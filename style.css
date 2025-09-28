@@ -1,3 +1,17 @@
+/* Total attendee purple box */
+#totalAttendeeBox {
+  display: inline-block;
+  background: #e6d9fc;
+  color: #64748b;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 2px 12px;
+  margin-left: 12px;
+  vertical-align: middle;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+  letter-spacing: 1px;
+}
 /* Modern reset */
 * {
   margin: 0;
@@ -244,8 +258,11 @@ button .fas {
   padding: 16px 20px;
   border-radius: 8px;
   color: #333;
-  margin-bottom: 15px;
-  display: none;
+  background: #e8f4fc;
+  display: block;
+  min-height: 24px;
+  text-align: center;
+  margin-top: 12px;
 }
 
 .success-message {
