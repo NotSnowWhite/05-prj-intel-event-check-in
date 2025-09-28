@@ -1,17 +1,3 @@
-/* Total attendee purple box */
-#totalAttendeeBox {
-  display: inline-block;
-  background: #e6d9fc;
-  color: #64748b;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 8px;
-  padding: 2px 12px;
-  margin-left: 12px;
-  vertical-align: middle;
-  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
-  letter-spacing: 1px;
-}
 /* Modern reset */
 * {
   margin: 0;
@@ -357,6 +343,64 @@ select {
   font-size: 15px;
   font-weight: 500;
   color: #475569;
+}
+
+/* Attendee name lists under team counters */
+.attendee-list {
+  list-style: none;
+  margin: 10px 0 0 0;
+  padding: 0;
+  text-align: left;
+  font-size: 15px;
+  min-height: 10px;
+}
+
+.attendee-list-water li {
+border: #a4cdda 2px solid;  
+border-radius: 6px;
+  margin-bottom: 4px;
+  padding: 4px 10px;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0,60,116,0.04);
+  list-style: none;
+  word-break: break-word;
+}
+
+.attendee-list-zero li {
+border: #a9dcbe 2px solid;  
+border-radius: 6px;
+  margin-bottom: 4px;
+  padding: 4px 10px;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0,60,116,0.04);
+  list-style: none;
+  word-break: break-word;
+}
+
+.attendee-list-power li {
+border: #d9c5ac 2px solid;  
+border-radius: 6px;
+  margin-bottom: 4px;
+  padding: 4px 10px;
+  color: #333;
+  box-shadow: 0 1px 3px rgba(0,60,116,0.04);
+  list-style: none;
+  word-break: break-word;
+}
+
+/* Total attendee purple box */
+#totalAttendeeBox {
+  display: inline-block;
+  background: #e6d9fc;
+  color: #64748b;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 2px 12px;
+  margin-left: 12px;
+  vertical-align: middle;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+  letter-spacing: 1px;
 }
 
 /* Mobile responsive */

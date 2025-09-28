@@ -62,6 +62,12 @@ form.addEventListener("submit", function (event) {
   // Increment the team counter
   teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
 
+  // Add attendee name to the correct team list
+  let teamList = JSON.parse(localStorage.getItem(teamValue + 'List') || '[]');
+  teamList.push(name);
+  localStorage.setItem(teamValue + 'List', JSON.stringify(teamList));
+  renderTeamLists();
+
   // Save updated counts
   saveCounts();
 
@@ -70,7 +76,6 @@ form.addEventListener("submit", function (event) {
   if (name !== "") {
     greeting.textContent = `Welcome, ${name}! You are checked in.`;
   }
-  console.log("Greeting text:", greeting.textContent);
   console.log("Greeting text:", greeting.textContent);
 
   // Reset the form
@@ -98,6 +103,25 @@ form.addEventListener("submit", function (event) {
   // Reset the form
   form.reset();
 });
+
+// Render all team attendee lists from localStorage
+function renderTeamLists() {
+  ['water', 'zero', 'power'].forEach(function(team) {
+    const listElem = document.getElementById(team + 'List');
+    if (listElem) {
+      let names = [];
+      try {
+        names = JSON.parse(localStorage.getItem(team + 'List')) || [];
+      } catch (e) {}
+      listElem.innerHTML = '';
+      names.forEach(function(n) {
+        const li = document.createElement('li');
+        li.textContent = n;
+        listElem.appendChild(li);
+      });
+    }
+  });
+}
 
 // Update attendee count above progress bar (0/50)
 function updateAttendeeCountDisplay() {
@@ -132,3 +156,4 @@ loadCounts();
 updateAttendeeCountDisplay();
 updateTotalAttendeeBox();
 updateProgressBar();
+renderTeamLists();
