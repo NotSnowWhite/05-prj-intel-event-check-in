@@ -103,9 +103,10 @@ form.addEventListener("submit", function (event) {
 function updateAttendeeCountDisplay() {
   const attendeeCount = document.getElementById("attendeeCount");
   if (attendeeCount) {
-    attendeeCount.textContent = count;
+    attendeeCount.textContent = count >= maxCount ? maxCount : count;
   }
 }
+
 
 // Update total attendee count display
 function updateTotalAttendeeBox() {
