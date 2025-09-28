@@ -1,4 +1,3 @@
-
 // Get references to DOM elements
 const form = document.getElementById("checkInForm");
 const nameInput = document.getElementById("attendeeName");
@@ -47,6 +46,8 @@ form.addEventListener("submit", function (event) {
 
   // Increment the count and update the display
   count++;
+  // Initialize total attendee box on page load
+  updateTotalAttendeeBox();
   updateAttendeeCountDisplay();
   updateProgressBar();
   console.log("Check-ins: ", count);
@@ -69,8 +70,30 @@ form.addEventListener("submit", function (event) {
   if (name !== "") {
     greeting.textContent = `Welcome, ${name}! You are checked in.`;
   }
- console.log("Greeting text:", greeting.textContent);
   console.log("Greeting text:", greeting.textContent);
+  console.log("Greeting text:", greeting.textContent);
+
+  // Reset the form
+  form.reset();
+  // If goal reached, show celebration message
+  if (count >= maxCount) {
+    const water = parseInt(document.getElementById("waterCount").textContent);
+    const zero = parseInt(document.getElementById("zeroCount").textContent);
+    const power = parseInt(document.getElementById("powerCount").textContent);
+    let winner = "";
+    if (water >= zero && water >= power) {
+      winner = "Team Water Wise";
+    } else if (zero >= water && zero >= power) {
+      winner = "Team Net Zero";
+    } else {
+      winner = "Team Renewables";
+    }
+    const celebration = document.getElementById("celebration");
+    if (celebration) {
+      celebration.style.display = "block";
+      celebration.innerHTML = `<b>🎉 ${winner} wins! 🎉</b>`;
+    }
+  }
 
   // Reset the form
   form.reset();
@@ -81,6 +104,14 @@ function updateAttendeeCountDisplay() {
   const attendeeCount = document.getElementById("attendeeCount");
   if (attendeeCount) {
     attendeeCount.textContent = count;
+  }
+}
+
+// Update total attendee count display
+function updateTotalAttendeeBox() {
+  const totalBox = document.getElementById("totalAttendeeBox");
+  if (totalBox) {
+    totalBox.textContent = count;
   }
 }
 
@@ -98,4 +129,5 @@ function updateProgressBar() {
 // On page load, restore counts and update UI
 loadCounts();
 updateAttendeeCountDisplay();
+updateTotalAttendeeBox();
 updateProgressBar();
