@@ -1,3 +1,4 @@
+
 // Get references to DOM elements
 const form = document.getElementById("checkInForm");
 const nameInput = document.getElementById("attendeeName");
@@ -35,7 +36,7 @@ function saveCounts() {
   });
 }
 
-// Function to handle form submission
+// Handle form submission
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -46,7 +47,7 @@ form.addEventListener("submit", function (event) {
 
   // Increment the count and update the display
   count++;
-  updateTotalAttendeeBox();
+  updateAttendeeCountDisplay();
   updateProgressBar();
   console.log("Check-ins: ", count);
 
@@ -68,18 +69,18 @@ form.addEventListener("submit", function (event) {
   if (name !== "") {
     greeting.textContent = `Welcome, ${name}! You are checked in.`;
   }
-
+ console.log("Greeting text:", greeting.textContent);
   console.log("Greeting text:", greeting.textContent);
 
   // Reset the form
   form.reset();
 });
 
-// Update total attendee count display
-function updateTotalAttendeeBox() {
-  const totalBox = document.getElementById("totalAttendeeBox");
-  if (totalBox) {
-    totalBox.textContent = count;
+// Update attendee count above progress bar (0/50)
+function updateAttendeeCountDisplay() {
+  const attendeeCount = document.getElementById("attendeeCount");
+  if (attendeeCount) {
+    attendeeCount.textContent = count;
   }
 }
 
@@ -96,5 +97,5 @@ function updateProgressBar() {
 
 // On page load, restore counts and update UI
 loadCounts();
-updateTotalAttendeeBox();
+updateAttendeeCountDisplay();
 updateProgressBar();
