@@ -7,6 +7,34 @@ const team = document.getElementById("teamSelect");
 let count = 0;
 const maxCount = 50;
 
+// Load counts from localStorage if available
+function loadCounts() {
+  const savedCount = localStorage.getItem("totalAttendance");
+  if (savedCount !== null) {
+    count = parseInt(savedCount);
+  }
+  const teams = ["water", "zero", "power"];
+  teams.forEach(function (team) {
+    const savedTeam = localStorage.getItem(team + "Count");
+    const teamCounter = document.getElementById(team + "Count");
+    if (savedTeam !== null && teamCounter) {
+      teamCounter.textContent = savedTeam;
+    }
+  });
+}
+
+// Save counts to localStorage
+function saveCounts() {
+  localStorage.setItem("totalAttendance", count);
+  const teams = ["water", "zero", "power"];
+  teams.forEach(function (team) {
+    const teamCounter = document.getElementById(team + "Count");
+    if (teamCounter) {
+      localStorage.setItem(team + "Count", teamCounter.textContent);
+    }
+  });
+}
+
 // Function to handle form submission
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -31,6 +59,9 @@ form.addEventListener("submit", function (event) {
 
   // Increment the team counter
   teamCounter.textContent = parseInt(teamCounter.textContent) + 1;
+
+  // Save updated counts
+  saveCounts();
 
   // Display personalized greeting message
   const greeting = document.getElementById("greeting");
@@ -63,6 +94,7 @@ function updateProgressBar() {
   }
 }
 
-// Initialize total attendee box and progress bar on page load
+// On page load, restore counts and update UI
+loadCounts();
 updateTotalAttendeeBox();
 updateProgressBar();
